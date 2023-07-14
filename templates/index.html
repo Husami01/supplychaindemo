@@ -1,61 +1,276 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
   <title>Store Front</title>
-  <style>
-    /* Add some basic styling */
-    .item {
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-
-    .cart {
-      border: 1px solid #ccc;
-      padding: 10px;
-    }
-  </style>
 </head>
 <body>
-  <h1>Welcome to Our Store</h1>
+  <div class="head-container">
+    <h1>Elektrace</h1>
+    <p class="open-cart">Cart</p>
+  </div>
+  <div class="items-container">
+    <div class="item">
+      <h2>Printer Circuit Board 4 GB</h2>
+      <img class="images" src="static/images/circuit.webp"></img>
+      <p>256 SSD, 4GB Printer Circuit Board</p>
+      <p>Price: $299.65</p>
+      <!-- <div> 
+        <button class="decrement">-</button>
+        <input value ="1" id="item1Quantity"> 
+        <button class="increment">+</button>
+      </div> -->
+      <button onclick="addToCart('EL0001', 'Printer Circuit Board 4 GB', 299.65, '1')">Add to Cart</button>
+    </div>
 
-  <div class="item">
-    <h2>Item 1</h2>
-    <p>Description of Item 1</p>
-    <p>Price: $10</p>
-    <input type="number" min="0" value="0" id="item1Quantity">
-    <button onclick="addToCart('Item 1', 10, 'item1Quantity')">Add to Cart</button>
+    <div class="item">
+      <h2>Printer Circuit Board 8 GB</h2>
+      <img class="images" src="static/images/circuit.webp"></img>
+      <p>256 SSD, 8 GB Printer Circuit Board</p>
+      <div class="bottom-content">
+        <p>Price: $378.17</p>
+        <button onclick="addToCart('EL0002', 'Printer Circuit Board 8 GB', 378.17, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>Printer Circuit Board 16 GB</h2>
+      <img class="images" src="static/images/circuit.webp"></img>
+      <p>256 SSD, 16 GB Printer Circuit Board</p>
+      <div class="bottom-content">
+        <p>Price: $52.79</p>
+        <button onclick="addToCart('EL0003', 'Printer Circuit Board 16 GB', 52.79, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>Printer Circuit Board 4 GB / 512</h2>
+      <img class="images" src="static/images/circuit.webp"></img>
+      <p>512 SSD, 4 GB Printer Circuit Board</p>
+      <div class="bottom-content">
+        <p>Price: $355.81</p>
+        <button onclick="addToCart('EL0004', 'Printer Circuit Board 4 GB / 512', 355.81, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>Printer Circuit Board 8 GB / 512</h2>
+      <img class="images" src="static/images/circuit.webp"></img>
+      <p>512 SSD, 8 GB Printer Circuit Board</p>
+      <div class="bottom-content">
+        <p>Price: $466.25</p>
+        <button onclick="addToCart('EL0005', 'Printer Circuit Board 8 GB / 512', 466.25, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>Printer Circuit Board 16 GB / 512</h2>
+      <img class="images" src="static/images/circuit.webp"></img>
+      <p>512 SSD, 16 GB Printer Circuit Board</p>
+      <div class="bottom-content">
+        <p>Price: $156.74</p>
+        <button onclick="addToCart('EL0006', 'Printer Circuit Board 16 GB / 512', 156.74, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>Printer Circuit Board 4 GB / 1 TB</h2>
+      <img class="images" src="static/images/circuit.webp"></img>
+      <p>1 TB SSD, 4 GB Printer Circuit Board</p>
+      <div class="bottom-content">
+        <p>Price: $136.71</p>
+        <button onclick="addToCart('EL0007', 'Printer Circuit Board 4 GB / 1 TB', 136.71, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>Printer Circuit Board 8 GB / 1 TB</h2>
+      <img class="images" src="static/images/circuit.webp"></img>
+      <p>1 TB SSD, 8 GB Printer Circuit Board</p>
+      <div class="bottom-content">
+        <p>Price: $377.18</p>
+        <button onclick="addToCart('EL0008', 'Printer Circuit Board 8 GB / 1 TB', 377.18, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>Printer Circuit Board 16 GB / 1 TB</h2>
+      <img class="images" src="static/images/circuit.webp"></img>
+      <p>1 TB SSD, 16 GB Printer Circuit Board</p>
+      <div class="bottom-content">
+        <p>Price: $338.97</p>
+        <button onclick="addToCart('EL0009', 'Printer Circuit Board 16 GB / 1 TB', 338.97, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>SSD Hard Drive - 256 GB</h2>
+      <img class="images" src="static/images/SSD.jpg"></img>
+      <div class="bottom-content">
+        <p>Price: $37.46</p>
+        <button onclick="addToCart('EL0010', 'SSD Hard Drive - 256 GB', 37.46, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>SSD Hard Drive -512 GB</h2>
+      <img class="images" src="static/images/SSD.jpg"></img>
+      <div class="bottom-content">
+        <p>Price: $246.22</p>
+        <button onclick="addToCart('EL0011', 'SSD Hard Drive - 512 GB', 246.22, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>SSD Hard Drive - 1 TB</h2>
+      <img class="images" src="static/images/SSD.jpg"></img>
+      <div class="bottom-content">
+        <p>Price: $61.91</p>
+        <button onclick="addToCart('EL0012', 'SSD Hard Drive - 1 TB', 61.91, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>English Key Board</h2>
+      <img class="images" src="static/images/keyboard.png"></img>
+      <div class="bottom-content">
+        <p>Price: $263.68</p>
+        <button onclick="addToCart('EL0013', 'English Key Board', 263.68, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>French Key Board</h2>
+      <img class="images" src="static/images/keyboard.png"></img>
+      <div class="bottom-content">
+        <p>Price: $428.68</p>
+        <button onclick="addToCart('EL0014', 'French Key Board', 428.68, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>German Key Board</h2>
+      <img class="images" src="static/images/keyboard.png"></img>
+      <div class="bottom-content">
+        <p>Price: $318.97</p>
+        <button onclick="addToCart('EL0015', 'German Key Board', 318.97, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>Dutch Key Board</h2>
+      <img class="images" src="static/images/keyboard.png"></img>
+      <div class="bottom-content">
+        <p>Price: $34.03</p>
+        <button onclick="addToCart('EL0016', 'Dutch Key Board', 34.03, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>Chinese Key Board</h2>
+      <img class="images" src="static/images/keyboard.png"></img>
+      <div class="bottom-content">
+        <p>Price: $280.83</p>
+        <button onclick="addToCart('EL0017', 'Chinese Key Board', 280.83, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>Power Cord - North America</h2>
+      <img class="images" src="static/images/naCord.jpg"></img>
+      <div class="bottom-content">
+        <p>Price: $32.91</p>
+        <button onclick="addToCart('EL0018', 'Power Cord - North America', 32.91, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>Power Cord - Europe</h2>
+      <img class="images" src="static/images/euCord.webp"></img>
+      <div class="bottom-content">
+        <p>Price: $201.61</p>
+        <button onclick="addToCart('EL0019', 'Power Cord - Europe', 201.61, '1')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h2>Power Cord - South East Asia</h2>
+      <img class="images" src="static/images/seaCord.jpg"></img>
+      <div class="bottom-content">
+        <p>Price: $211.79</p>
+        <button onclick="addToCart('EL0020', 'Power Cord - South East Asia', 211.79, '1')">Add to Cart</button>
+      </div>
+    </div>
   </div>
 
-  <div class="item">
-    <h2>Item 2</h2>
-    <p>Description of Item 2</p>
-    <p>Price: $15</p>
-    <input type="number" min="0" value="0" id="item2Quantity">
-    <button onclick="addToCart('Item 2', 15, 'item2Quantity')">Add to Cart</button>
+  <div class="cart" id="cart">
+    <a class="close-cart">&times;</a>
+    <h2>Shopping Cart</h2>
+    <div id="cartItems"></div>
+    <form id="cartForm" action="/checkout">
+      <input type="hidden" name="cartData" id="cartData" value="">
+      <button type="submit">Checkout</button>
+    </form>
   </div>
-
-  <div class="item">
-    <h2>Item 3</h2>
-    <p>Description of Item 3</p>
-    <p>Price: $20</p>
-    <input type="number" min="0" value="0" id="item3Quantity">
-    <button onclick="addToCart('Item 3', 20, 'item3Quantity')">Add to Cart</button>
-  </div>
-
-  <h2>Shopping Cart</h2>
-  <div class="cart" id="cartItems"></div>
 
   <script>
-    function addToCart(itemName, price, quantityFieldId) {
-      var quantity = document.getElementById(quantityFieldId).value;
+    var cartItems = []; // Array to store cart items
+    function addToCart(itemID, itemName, price, quantityFieldId) {
+      var quantity = quantityFieldId;
       if (quantity > 0) {
         var itemTotal = price * quantity;
-        var cartItem = document.createElement('div');
-        cartItem.innerHTML = quantity + ' x ' + itemName + ' - $' + itemTotal;
-        document.getElementById('cartItems').appendChild(cartItem);
+        var cartItem = {
+          id: itemID,
+          name: itemName,
+          quantity: quantity,
+          total: itemTotal
+        };
+        cartItems.push(cartItem);
+        var cartItemElement = document.createElement('div');
+        cartItemElement.innerHTML = quantity + ' x ' + itemName + ' - $' + itemTotal;
+        document.getElementById('cartItems').appendChild(cartItemElement);
+        updateCartData();
+        // Send a POST request to the server
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/add_to_cart", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify({
+          item: itemID,
+          quantity: quantity
+        }));
       }
     }
+    function updateCartData() {
+      var cartDataInput = document.getElementById('cartData');
+      cartDataInput.value = JSON.stringify(cartItems);
+      console.log(cartItems);
+    }
+
+    var cart = document.getElementById("cart");
+    var openCart = document.getElementsByClassName("open-cart")[0];
+    var closeCart = document.getElementsByClassName("close-cart")[0];
+
+    openCart.onclick = function() {
+      cart.style.width = "30vw";
+    }
+    closeCart.onclick = function() {
+      cart.style.width = "0";
+    }
+
+    document.body.addEventListener('click', function(event) {
+      if (event.target.classList.contains('increment')) {
+        let input = event.target.previousElementSibling;
+        input.value = parseInt(input.value) + 1;
+      }
+
+      if (event.target.classList.contains('decrement')) {
+        let input = event.target.nextElementSibling;
+        let val = parseInt(input.value);
+        if (val > 1) {
+          input.value = val - 1;
+        }
+      }
+    });
   </script>
 </body>
 </html>
