@@ -51,6 +51,7 @@
   position: fixed;
   right: 0;
   top: 0;
+  width: 0;
   overflow-x: hidden;
   transition: 0.5s;
   background-color: #e4eefd; 
