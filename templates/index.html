@@ -7,7 +7,7 @@
 <body>
   <div class="head-container">
     <h1>Elektrace</h1>
-    <p class="open-cart">Cart</p>
+    <p class="open-cart">Cart (<span id="cart-count">0</span>)</p>
   </div>
   <div class="items-container">
     <div class="item">
@@ -355,7 +355,6 @@
 
   <script>
     var cartItems = []; 
-
     function addToCart(itemID, itemName, price, quantityFieldId) {
       var quantity = document.getElementById(quantityFieldId).value;
       if (quantity > 0) {
@@ -367,7 +366,7 @@
           total: itemTotal
         };
         cartItems.push(cartItem);
-
+        document.getElementById('cart-count').innerText = cartItems.length;
         var cartItemElement = document.createElement('div');
         cartItemElement.className = 'cart-item';
         cartItemElement.innerHTML = quantity + ' x ' + itemName + ' - $' + price;
@@ -389,6 +388,7 @@
             item: itemID,
             quantity: quantity
           }));
+          document.getElementById('cart-count').innerText = cartItems.length;
         });
         
         cartItemElement.appendChild(removeButton);
