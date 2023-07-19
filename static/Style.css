@@ -34,7 +34,7 @@
 }
 
 .cart {
-  border: 1px solid #ccc;
+  border-left: 3px solid #5E5DF0;  /* Adding a colored border */
   height: 100%;
   position: fixed;
   right: 0;
@@ -42,7 +42,10 @@
   width: 0;
   overflow-x: hidden;
   transition: 0.5s;
-  background-color: #f1f1f1;
+  background-color: #e4eefd; /* Consider a different shade or color here */
+  box-shadow: -2px 0 8px rgba(0,0,0,0.1); /* Adding a shadow for depth */
+  padding-left: 1.7vw; /* Adding padding to create space around the content */
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
 }
 
 .items-container {
@@ -54,18 +57,18 @@
   margin-bottom: 50px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1080px) {
   .items-container {
     grid-template-columns: 1fr;
-    margin-bottom: 50px;
+  }
+  .cart{
+    width:100vw;
   }
 }
 
-
-
 .open-cart {
   cursor: pointer;
-  margin-right: 10%;
+  margin-right: 5%;
 }
 
 .close-cart {
@@ -83,13 +86,23 @@
 }
 
 h1{
-  font-size: 2.5vw;
+  font-size: 5vh;
   margin-left: 5%;
   font-family: 'Trebuchet MS', sans-serif;
 }
 
+h2{
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 4vh;
+}
 
-button {
+p{
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 3vh;
+}
+
+button.add {
+  margin-top: 10px;
   background: #5E5DF0;
   border-radius: 999px;
   box-sizing: border-box;
@@ -108,4 +121,40 @@ button {
   width: fit-content;
   word-break: break-word;
   border: 0;
+}
+
+button.add {
+  /* ...existing styles... */
+  transition: transform 0.1s ease-in-out; /* Add this line */
+}
+
+button.add:active {
+  transform: scale(0.95); /* Add this block */
+}
+
+
+/* Styles for the buttons */
+button.decrement,
+button.increment {
+    padding: 7px 14px;
+    background-color: #007BFF; /* Change this to your preferred color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.decrement:hover,
+button.increment:hover {
+    background-color: #0056b3; /* Darker blue for hover effect, change as you prefer */
+}
+
+/* Styles for the input field */
+input.quantity {
+    text-align: center; /* Centers the text */
+    padding: 7px;
+    border: 2px solid #007BFF; /* Change this to your preferred color */
+    border-radius: 5px;
+    width: 50px;
+    font-size: 16px; /* Change this to adjust the font size */
 }
