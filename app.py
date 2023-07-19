@@ -26,39 +26,45 @@ orderItemQuantities = {
     'EL0020': 0
 }
 
+fName = ""
+lName = ""
+address = ""
+
 @app.route("/")
 def index():
 	return render_template("index.html")
 
 @app.route("/checkout", methods=['GET', 'POST'])
 def checkout():
-	return render_template("checkout.html")
-
+    print(orderItemQuantities)
+    return render_template("checkout.html")
+    
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
     data = request.get_json()
     item = data.get('item')
     quantity = data.get('quantity')
-    if item in orderItemQuantities:
-        orderItemQuantities[item] += int(quantity)
-    else:
-        return "Invalid item", 400
-
+    orderItemQuantities[item] += int(quantity)
     return "Cart updated", 200
 
-@app.route('/process_cart', methods=['POST'])
+@app.route('/remove_from_cart', methods=['POST'])
+def remove_from_cart():
+    data = request.get_json()
+    item = data.get('item')
+    quantity = data.get('quantity')
+    orderItemQuantities[item] = max(orderItemQuantities[item] - int(quantity), 0)
+    return "Cart updated", 200
+
+@app.route('/process_order', methods=['POST'])
 def process_cart():
-    # cart_data = request.form.get('cartData')
-    # Process the cart data as needed
-    # cart_items = json.loads(cart_data)
-    # for item in cart_items:
-    #     name = item['name']
-    #     quantity = item['quantity']
-    #     total = item['total']
-    #     print(name, quantity, total)
-    #for x in orderItemQuantities:
-    #    print(orderItemQuantities[x])
-    return 'Cart data received'
+    data = request.get_json()
+    fName = data.get('fname')
+    lName = data.get('lname')
+    address = data.get('addr')
+    print(fName)
+    print(lName)
+    print(address)
+    return 'Order Placed'
     
 if __name__ == "__main__":
 	app.run()

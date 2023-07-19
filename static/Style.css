@@ -4,21 +4,32 @@
   justify-content: space-between;
   align-items: center;
   border: 1px solid #ccc;
-  border-radius: 10px; /* round the corners */
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* add some shadow for a card-like effect */
+  border-radius: 10px; 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 20px;  
   margin: 10px;
-  background-color: #e4eefd; /* set a background color */
+  background-color: #e4eefd;
   width: auto;
   height: auto;
-  transition: all 0.3s ease; /* animate any changes */
+  transition: all 0.3s ease;
+}
+
+.img-container {
+  width: 250px;
+  height: 250px;  
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px; 
+  background-color: #ffffff34;
+  margin-bottom: 10px;
 }
 
 .images {
-  /* CSS properties to style your image */
   max-width: 100%;
-  height: auto;
-  object-fit: contain; /* keeps image aspect ratio while fitting in its container */
+  max-height: 100%;
+  object-fit: cover; 
 }
 
 .bottom-content {
@@ -30,28 +41,64 @@
 }
 
 .bottom-content p {
-  margin-bottom: 10px; /* adjust this as needed for your desired space between the elements */
+  margin-bottom: 10px;
+  margin-top: 0;
 }
 
 .cart {
-  border-left: 3px solid #5E5DF0;  /* Adding a colored border */
+  border-left: 3px solid #5E5DF0; 
   height: 100%;
   position: fixed;
   right: 0;
   top: 0;
-  width: 0;
   overflow-x: hidden;
   transition: 0.5s;
-  background-color: #e4eefd; /* Consider a different shade or color here */
-  box-shadow: -2px 0 8px rgba(0,0,0,0.1); /* Adding a shadow for depth */
-  padding-left: 1.7vw; /* Adding padding to create space around the content */
+  background-color: #e4eefd; 
+  box-shadow: -2px 0 8px rgba(0,0,0,0.1); 
   font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+}
+
+.cart-contents{
+  padding-left: 1.7vh;
+  padding-right: 1.7vh;
+}
+
+.cart-item {
+  position: relative;
+  background: #fff;   
+  padding: 3vh;       
+  margin-bottom: 10px;
+  border-radius: 10px; 
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.1); 
+  transition: box-shadow 0.3s ease; 
+  font-size: 2vh;
+}
+
+.cart-item:hover {
+  box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.1);
+}
+
+.remove-item {
+  position: absolute; 
+  right: 30px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 3vh;
+  margin-left: 10px;
+}
+
+#total {
+  text-align: right;
 }
 
 .items-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Replace 200px with the minimum width you want for your columns */
-  gap: 0.25%; /* Adjust according to your preference */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  gap: 0.25%; 
   width: 90vw;
   margin: 0 auto;
   margin-bottom: 50px;
@@ -61,9 +108,10 @@
   .items-container {
     grid-template-columns: 1fr;
   }
-  .cart{
-    width:100vw;
-  }
+}
+
+.cart.fullscreen {
+  width: 100%;
 }
 
 .open-cart {
@@ -73,10 +121,30 @@
 
 .close-cart {
   position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
+  top: 20px;
+  right: 30px;
+  font-size: 4vh;
   cursor: pointer;
+}
+
+#cartForm button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2.5vh 0;
+  margin-top: 10px;
+  color: #fff; 
+  background-color: #5E5DF0;  
+  border: none;
+  border-radius: 5px; 
+  font-size: 2vh;
+  text-transform: uppercase; 
+  cursor: pointer;  
+  transition: background-color 0.3s ease; 
+}
+
+#cartForm button:hover {
+  background-color: #6a6dfc;  
 }
 
 .head-container {
@@ -91,14 +159,24 @@ h1{
   font-family: 'Trebuchet MS', sans-serif;
 }
 
-h2{
+h2 {
   font-family: 'Trebuchet MS', sans-serif;
-  font-size: 4vh;
+  font-size: 3vh;
+  color: #333;  
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  text-align: center;  /* Aligns text horizontally in the center */
+  display: flex; /* The following three lines are for vertical centering */
+  justify-content: center;
+  align-items: center;
 }
 
 p{
   font-family: 'Trebuchet MS', sans-serif;
-  font-size: 3vh;
+  font-size: 2vh;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 button.add {
@@ -109,12 +187,12 @@ button.add {
   color: #FFFFFF;
   cursor: pointer;
   font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
-  font-size: 16px;
+  font-size: 2vh;
   font-weight: 700;
   line-height: 24px;
   opacity: 1;
   outline: 0 solid transparent;
-  padding: 8px 18px;
+  padding: 2vh 3vh;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -124,20 +202,18 @@ button.add {
 }
 
 button.add {
-  /* ...existing styles... */
-  transition: transform 0.1s ease-in-out; /* Add this line */
+  transition: transform 0.1s ease-in-out;
 }
 
 button.add:active {
-  transform: scale(0.95); /* Add this block */
+  transform: scale(0.95);
 }
 
-
-/* Styles for the buttons */
 button.decrement,
 button.increment {
-    padding: 7px 14px;
-    background-color: #007BFF; /* Change this to your preferred color */
+    padding: 1.5vh 1.5vh;
+    font-size: 2vh;
+    background-color: #007BFF; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -146,15 +222,55 @@ button.increment {
 
 button.decrement:hover,
 button.increment:hover {
-    background-color: #0056b3; /* Darker blue for hover effect, change as you prefer */
+    background-color: #0056b3; 
 }
 
-/* Styles for the input field */
 input.quantity {
-    text-align: center; /* Centers the text */
-    padding: 7px;
-    border: 2px solid #007BFF; /* Change this to your preferred color */
+    text-align: center;
+    padding: 2vh;
+    border: 2px solid #007BFF; 
     border-radius: 5px;
-    width: 50px;
-    font-size: 16px; /* Change this to adjust the font size */
+    width: 5vh;
+    font-size: 2vh; 
+}
+
+.checkout-container {
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  width: 70vw;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkout-form input {
+  display: block;
+  width: 100%;
+  padding: 2.5vh;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 2.5vh;
+  box-sizing: border-box; /* include padding and border in the element's total width and height */
+}
+
+.checkout-form .submit-button {
+  background-color: #5E5DF0;
+  color: #fff;
+  border: none;
+  padding: 2vh;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 2.5vh;
+}
+
+.checkout-form .submit-button:hover {
+  background-color: #4b4cbf;
 }

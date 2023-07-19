@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
     </head>
     <body>
-        <h1>Checkout</h1>
-        <form action="/process_cart" method="POST">
-            <label for="fname">First name:</label>
-            <input type="text" id="fname" name="fname"><br><br>
-            <label for="lname">Last name:</label>
-            <input type="text" id="lname" name="lname"><br><br>
-            <label for="lname">Address:</label>
-            <input type="text" id="addr" name="addr"><br><br>
-            <input type="submit" value="Submit">
-          </form>
+        <a href="/" style="text-decoration: none; color: inherit;"><h1>Elektrace</h1></a>
+        <div class="checkout-container" id="checkoutContainer">
+            <h2>Checkout</h2>
+            <form class="checkout-form" id="checkoutForm">
+                <input type="text" id="fname" name="fname" placeholder="First name"><br>
+                <input type="text" id="lname" name="lname" placeholder="Last name"><br>
+                <input type="text" id="addr" name="addr" placeholder="Address"><br>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+
+        <script>
+            document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/process_order", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.send(JSON.stringify({
+                    fname: document.getElementById('fname').value,
+                    lname: document.getElementById('lname').value,
+                    addr: document.getElementById('addr').value
+                }));
+
+                xhr.onload = function () {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // We have a success response
+                        document.getElementById('checkoutContainer').innerHTML = '<h2>Order submitted!</h2>';
+                    } else {
+                        // We have an error response
+                        document.getElementById('checkoutContainer').innerHTML = '<h2>There was an error with your order. Please try again.</h2>';
+                    }
+                };
+            });
+        </script>
     </body>
 </html>
