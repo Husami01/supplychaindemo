@@ -154,10 +154,9 @@
   align-items: center;
 }
 
-h1{
-  font-size: 5vh;
+.logo{
+  width: 30vh;
   margin-left: 5%;
-  font-family: 'Trebuchet MS', sans-serif;
 }
 
 h2 {
