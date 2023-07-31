@@ -408,10 +408,17 @@
     function updateTotal() {
       var total = 0;
       for (var i = 0; i < cartItems.length; i++) {
-        total += parseFloat(cartItems[i].total);
+          total += parseFloat(cartItems[i].total);
       }
       document.getElementById('total').innerHTML = 'Total: $' + total.toFixed(2);
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/updateTotal", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(JSON.stringify({
+          total: total 
+      }));
     }
+
 
     function updateCartData() {
       var cartDataInput = document.getElementById('cartData');

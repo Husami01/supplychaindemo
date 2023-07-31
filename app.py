@@ -30,7 +30,7 @@ orderItemQuantities = {
 fName = ""
 lName = ""
 address = ""
-
+cartTotal = 0
 @app.route("/")
 def index():
 	return render_template("index.html")
@@ -63,11 +63,17 @@ def process_cart():
     fName = data.get('fname')
     lName = data.get('lname')
     address = data.get('addr')
-    response = requests.post(flow_url, json={"First Name": fName, "Price": 56.53})
+    response = requests.post(flow_url, json={"First Name": fName, "Price":cartTotal})
     print(fName)
     print(lName)
     print(address)
     return 'Order Placed'
     
+@app.route('/updateTotal', methods=['POST'])
+def updateTotal():
+    data = request.get_json()
+    cartTotal = data.get('total')
+    return "Total updated successfully"
+
 if __name__ == "__main__":
 	app.run()

@@ -29,10 +29,8 @@
 
                 xhr.onload = function () {
                     if (xhr.status >= 200 && xhr.status < 300) {
-                        // We have a success response
                         document.getElementById('checkoutContainer').innerHTML = '<h2>Order submitted!</h2>';
                     } else {
-                        // We have an error response
                         document.getElementById('checkoutContainer').innerHTML = '<h2>There was an error with your order. Please try again.</h2>';
                     }
                 };
