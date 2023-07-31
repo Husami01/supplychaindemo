@@ -59,11 +59,11 @@ def remove_from_cart():
 @app.route('/process_order', methods=['POST'])
 def process_cart():
     flow_url = "https://prod-33.westus.logic.azure.com:443/workflows/0ade75fc9afa4a60886ae76f69f1c5d4/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=IoWUjcMxm5sTGbINhBid9zhgco_RLHPZ8sm8d0JhA68"
-    response = requests.post(flow_url, json=orderItemQuantities)
     data = request.get_json()
     fName = data.get('fname')
     lName = data.get('lname')
     address = data.get('addr')
+    response = requests.post(flow_url, json={"First Name": fName, "Price": 56.53})
     print(fName)
     print(lName)
     print(address)
