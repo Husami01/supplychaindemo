@@ -38,7 +38,8 @@ def index():
 @app.route("/checkout", methods=['GET', 'POST'])
 def checkout():
     global cartTotal
-    return render_template('checkout.html', cartTotal = cartTotal)
+    rounded_total = round(cartTotal, 2)
+    return render_template('checkout.html', cartTotal=rounded_total)
     
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
