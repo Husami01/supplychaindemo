@@ -74,7 +74,9 @@ def process_cart():
         "Price": cartTotal
     }
     order_data.update(orderItemQuantities)
-    print(order_data)
+    count_non_zero_values = sum(value != 0 for value in orderItemQuantities.values())
+    diffProducts = {'diffProducts': count_non_zero_values}
+    order_data.update(diffProducts)
     response = requests.post(flow_url, json=order_data)
     return 'Order Placed'
     
