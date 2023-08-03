@@ -61,11 +61,10 @@ def process_cart():
     count_non_zero_values = sum(value != 0 for value in session['orderItemQuantities'].values())
     diffProducts = {'diffProducts': count_non_zero_values}
     order_data.update(diffProducts)
-    response = requests.post(flow_url, json=order_data)
-
+    #response = requests.post(flow_url, json=order_data)
+    print(order_data)
     # Optionally, you could reset the cart after processing the order:
-    session['orderItemQuantities'] = {f'EL{i:04d}': 0 for i in range(1, 21)}
-    session['cartTotal'] = 0
+    session.clear()
     return 'Order Placed'
 
 
