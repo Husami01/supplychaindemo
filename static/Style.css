@@ -303,7 +303,7 @@ select:hover {
   top: 10vh; /* Center vertically */
   left: 50vw; /* Center horizontally */
   transform: translate(-50%, -50%); /* Adjust for the element's own dimensions */
-  background-color: #515999;
+  background-color: #f1c287;
   color: white;
   padding: 16px;
   font-size: 18px;
