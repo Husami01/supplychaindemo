@@ -296,3 +296,18 @@ select:focus {
 select:hover {
   cursor: pointer;
 }
+
+.alert {
+  display: none;
+  position: fixed; /* Use fixed positioning instead of absolute */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for the element's own dimensions */
+  background-color: #515999;
+  color: white;
+  padding: 16px;
+  font-size: 18px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Optional, to ensure the alert is above other elements */
+}

@@ -353,9 +353,21 @@
     </div>
   </div>
 
+<div id="alert" class="alert">
+  Item added to cart!
+</div>
+
   <script>
     var cartItems = [];
     
+    function showAlert() {
+      var alertDiv = document.getElementById('alert');
+      alertDiv.style.display = 'block'; // Show the alert
+      setTimeout(function() {
+        alertDiv.style.display = 'none'; // Hide the alert after 1 second
+      }, 1000);
+    }
+
     let orderItemQuantities = {};
     for (let i = 1; i <= 20; i++) {
         let key = 'EL' + String(i).padStart(4, '0');
@@ -363,6 +375,7 @@
     }
     
     function addToCart(itemID, itemName, price, quantityFieldId) {
+      showAlert();
       var quantity = parseInt(document.getElementById(quantityFieldId).value);
       if (quantity > 0) {
           var itemTotal = (price * quantity).toFixed(2);
