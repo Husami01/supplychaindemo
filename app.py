@@ -35,8 +35,8 @@ def process_order():
     count_non_zero_values = sum(value != 0 for value in products.values())
     diffProducts = {'diffProducts': count_non_zero_values}
     order_data.update(diffProducts)
-    print(order_data)
-    #response = requests.post(flow_url, json=order_data)
+    #print(order_data)
+    response = requests.post(flow_url, json=order_data)
     return 'Order Placed'
 
 if __name__ == "__main__":
