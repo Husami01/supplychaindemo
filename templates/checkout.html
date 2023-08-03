@@ -10,7 +10,7 @@
         <div class="checkout-container" id="checkoutContainer">
             <h2>Checkout</h2>
             <form class="checkout-form" id="checkoutForm">
-                <h3>Your total is: ${{ cartTotal}}</h3>
+                <h3>Your total is: $<span id="cartTotal"></span></h3>
                 <input type="text" id="fname" name="fname" placeholder="First name" required><br>
                 <input type="text" id="lname" name="lname" placeholder="Last name" required><br>
                 <input type="text" id="addr" name="addr" placeholder="Address" required><br>
@@ -73,6 +73,8 @@
         </div>
 
         <script>
+            document.getElementById('cartTotal').innerText = localStorage.getItem('cartTotal');
+            var orderItemQuantities = JSON.parse(localStorage.getItem('orderItemQuantities'));
             document.getElementById('checkoutForm').addEventListener('submit', function(e) {
                 e.preventDefault(); 
                 var fname = document.getElementById('fname').value;
@@ -89,10 +91,12 @@
                 xhr.open("POST", "/process_order", true);
                 xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.send(JSON.stringify({
+                    prods: orderItemQuantities,
                     fname: fname,
                     lname: lname,
                     addr: addr,
-                    state: state
+                    state: state,
+                    price: localStorage.getItem('cartTotal')
                 }));
 
                 xhr.onload = function () {

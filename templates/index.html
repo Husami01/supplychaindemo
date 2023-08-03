@@ -348,77 +348,65 @@
       <form id="cartForm" action="/checkout">
         <input type="hidden" name="cartData" id="cartData" value="">
         <p id="total">Total: </p>
-        <button type="submit">Checkout</button>
+        <button type="submit" id="checkoutButton">Checkout</button>
       </form>
     </div>
   </div>
 
   <script>
-    var cartItems = []; 
+    var cartItems = [];
+    
+    let orderItemQuantities = {};
+    for (let i = 1; i <= 20; i++) {
+        let key = 'EL' + String(i).padStart(4, '0');
+        orderItemQuantities[key] = 0;
+    }
+    
     function addToCart(itemID, itemName, price, quantityFieldId) {
-      var quantity = document.getElementById(quantityFieldId).value;
+      var quantity = parseInt(document.getElementById(quantityFieldId).value);
       if (quantity > 0) {
-        var itemTotal = (price * quantity).toFixed(2);
-        var cartItem = {
-          id: itemID,
-          name: itemName,
-          quantity: quantity,
-          total: itemTotal
-        };
-        cartItems.push(cartItem);
-        document.getElementById('cart-count').innerText = cartItems.length;
-        var cartItemElement = document.createElement('div');
-        cartItemElement.className = 'cart-item';
-        cartItemElement.innerHTML = quantity + ' x ' + itemName + ' - $' + price;
-
-        var removeButton = document.createElement('button');
-        removeButton.innerHTML = 'x';
-        removeButton.className = 'remove-item';
-        removeButton.addEventListener('click', function() {
-          var index = cartItems.indexOf(cartItem);
-          if (index > -1) {
-            cartItems.splice(index, 1);
-          }
-          cartItemElement.remove();
-          updateTotal();
-          var xhr = new XMLHttpRequest();
-          xhr.open("POST", "/remove_from_cart", true);
-          xhr.setRequestHeader("Content-Type", "application/json");
-          xhr.send(JSON.stringify({
-            item: itemID,
-            quantity: quantity
-          }));
+          var itemTotal = (price * quantity).toFixed(2);
+          var cartItem = {
+              id: itemID,
+              name: itemName,
+              quantity: quantity,
+              total: itemTotal
+          };
+          cartItems.push(cartItem);
+          orderItemQuantities[itemID] += quantity; // Increment the quantity in orderItemQuantities
           document.getElementById('cart-count').innerText = cartItems.length;
-        });
-        
-        cartItemElement.appendChild(removeButton);
-        document.getElementById('cartItems').appendChild(cartItemElement);
-        updateTotal();
+          var cartItemElement = document.createElement('div');
+          cartItemElement.className = 'cart-item';
+          cartItemElement.innerHTML = quantity + ' x ' + itemName + ' - $' + price;
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/add_to_cart", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(JSON.stringify({
-          item: itemID,
-          quantity: quantity
-        }));
+          var removeButton = document.createElement('button');
+          removeButton.innerHTML = 'x';
+          removeButton.className = 'remove-item';
+          removeButton.addEventListener('click', function() {
+              var index = cartItems.indexOf(cartItem);
+              if (index > -1) {
+                  cartItems.splice(index, 1);
+              }
+              cartItemElement.remove();
+              orderItemQuantities[itemID] -= quantity; // Decrement the quantity in orderItemQuantities
+              updateTotal(); // Assuming this updates the total in your UI
+              document.getElementById('cart-count').innerText = cartItems.length;
+          });
+
+          cartItemElement.appendChild(removeButton);
+          document.getElementById('cartItems').appendChild(cartItemElement);
+          updateTotal(); // Assuming this updates the total in your UI
       }
     }
 
     function updateTotal() {
-      var total = 0;
-      for (var i = 0; i < cartItems.length; i++) {
-          total += parseFloat(cartItems[i].total);
-      }
-      document.getElementById('total').innerHTML = 'Total: $' + total.toFixed(2);
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", "/updateTotal", true);
-      xhr.setRequestHeader("Content-Type", "application/json");
-      xhr.send(JSON.stringify({
-          total: total 
-      }));
+        var total = 0;
+        for (var i = 0; i < cartItems.length; i++) {
+            total += parseFloat(cartItems[i].total);
+        }
+        document.getElementById('total').innerHTML = 'Total: $' + total.toFixed(2);
+        localStorage.setItem('cartTotal', total.toFixed(2));
     }
-
 
     function updateCartData() {
       var cartDataInput = document.getElementById('cartData');
@@ -452,6 +440,10 @@
           input.value = val - 1;
         }
       }
+
+      document.getElementById('checkoutButton').addEventListener('click', function(e) {
+        localStorage.setItem('orderItemQuantities', JSON.stringify(orderItemQuantities));
+      });
     });
   </script>
 </body>
