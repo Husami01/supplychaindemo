@@ -79,6 +79,16 @@
   box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.1);
 }
 
+.totalChk {
+  font-size: 5vw;
+}
+
+@media (min-width: 1080px) {
+  .totalChk {
+    font-size: 20px; /* set a fixed size for larger screens */
+  }
+}
+
 .remove-item {
   position: absolute; 
   right: 30px; 
@@ -258,6 +268,8 @@ input.quantity {
   box-sizing: border-box; /* include padding and border in the element's total width and height */
 }
 
+
+
 .checkout-form .submit-button {
   background-color: #5E5DF0;
   color: #fff;
@@ -277,13 +289,13 @@ input.quantity {
 
 select {
   width: 100%;
-  height: 35px;
+  height: 8vh;
   margin: 10px 0;
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
   background-color: #fff;
-  font-size: 16px;
+  font-size: 2vh;
   color: #333;
 }
 
@@ -299,15 +311,30 @@ select:hover {
 
 .alert {
   display: none;
-  position: fixed; /* Use fixed positioning instead of absolute */
-  top: 10vh; /* Center vertically */
-  left: 50vw; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Adjust for the element's own dimensions */
+  position: fixed;
+  top: 10vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
   background-color: #f1c287;
   color: white;
-  padding: 16px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   font-size: 18px;
   border-radius: 5px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Optional, to ensure the alert is above other elements */
+  z-index: 1000;
+  width: 60%; /* Use a percentage-based width for responsiveness */
+  max-width: 400px; /* Cap the width to prevent it from being too wide on larger screens */
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+  text-align: center;
 }
+
+/* Adjustments for smaller screens (for example, phones in portrait) */
+@media (max-width: 1080px) {
+  .alert {
+    font-size: 40px;
+  }
+}
+
